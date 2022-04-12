@@ -1,6 +1,6 @@
 const getArrayPos = (str) => {
   const arr = []
-  str.split(',').forEach(el => {
+  str.split(',').forEach((el) => {
     arr.push(parseInt(el))
   })
   arr.push(0)
@@ -47,8 +47,6 @@ export const getGridAssets = (items) => {
       path.config = items[i].config
     }
 
-
-
     dimension.width = Math.max(pos[0], dimension.width)
     dimension.height = Math.max(pos[1], dimension.height)
   }
@@ -60,11 +58,11 @@ export const getGridAssets = (items) => {
   }
   path.grid = grid2D
 
-  return [ planes, path, objs ]
+  return [planes, path, objs]
 }
 
 export const mapRange = (value, low1, high1, low2, high2) => {
-  return low2 + (high2 - low2) * (value - low1) / (high1 - low1)
+  return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1)
 }
 
 export const throttle = (fn, limit = 1000) => {
@@ -83,9 +81,9 @@ export const throttle = (fn, limit = 1000) => {
 export const debounce = (fn, timeout = 1000) => {
   return (...args) => {
     let time
-    if(time) {
+    if (time) {
       clearTimeout(time)
     }
-    setTimeout(()=>fn(...args),timeout)
+    setTimeout(() => fn(...args), timeout)
   }
 }

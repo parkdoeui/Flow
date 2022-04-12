@@ -37,7 +37,7 @@
   border-radius: 8px;
   background-color: #000;
   color: #fff;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .hue-picker {
