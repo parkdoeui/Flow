@@ -1,0 +1,22 @@
+.config__item {
+  padding: 8px 12px;
+  color: #444;
+  cursor: default;
+}
+
+.config__item:hover {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background-color: #eee;
+  color: #111;
+  cursor: default;
+  transition: all .1s;
+}
+
+.config__item--active {
+  padding: 8px 12px;
+  background-color: #eee;
+  border-radius: 8px;
+  color: #000;
+  cursor: default;
+}

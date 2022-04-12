@@ -1,0 +1,15 @@
+.App {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+.app__header {
+  position: absolute;
+  color: #fff;
+  padding: 16px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+}

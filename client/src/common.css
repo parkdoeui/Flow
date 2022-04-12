@@ -1,0 +1,19 @@
+:root {
+  --background: #222;
+  --font: #fff;
+}
+
+h4 {
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+}
+
+h5 {
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+}
+
+h6 {
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+}
