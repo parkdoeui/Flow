@@ -1,10 +1,15 @@
 import React, { useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 
-
-
-const Box = ({ onFrame = () => { }, hoverDisabled, position, color, opacity, scale, ...props }) => {
-
+const Box = ({
+  onFrame = () => {},
+  hoverDisabled,
+  position,
+  color,
+  opacity,
+  scale,
+  ...props
+}) => {
   const ref = useRef()
   const [isHovered, setIsHovered] = useState(false)
   useFrame((state) => onFrame(state, ref))
@@ -29,7 +34,8 @@ const Box = ({ onFrame = () => { }, hoverDisabled, position, color, opacity, sca
         opacity={opacity}
         attenuationTint="#fff"
         attenuationDistance={0}
-        color={hoverDisabled ? color : isHovered ? 'hotpink' : color} />
+        color={hoverDisabled ? color : isHovered ? 'hotpink' : color}
+      />
     </mesh>
   )
 }

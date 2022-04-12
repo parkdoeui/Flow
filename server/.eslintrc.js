@@ -1,17 +1,13 @@
 module.exports = {
   env: {
     browser: true,
+    commonjs: true,
     es2021: true,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  extends: 'eslint:recommended',
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
     ecmaVersion: 'latest',
-    sourceType: 'module',
   },
-  plugins: ['react'],
   rules: {
     'comma-dangle': ['error', 'always-multiline'],
     'eol-last': ['error', 'always'],
@@ -19,6 +15,5 @@ module.exports = {
     'object-curly-spacing': ['error', 'always'],
     quotes: ['error', 'single', { avoidEscape: true }],
     semi: ['error', 'never'],
-    'react/prop-types': 0,
   },
 }

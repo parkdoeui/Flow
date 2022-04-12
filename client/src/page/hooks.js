@@ -22,7 +22,7 @@ export const useSocket = (socket) => {
     } else {
       setIsUnstable(false)
     }
-  },[latency])
+  }, [latency])
 
   useEffect(() => {
     let reconnectSocket
@@ -36,14 +36,18 @@ export const useSocket = (socket) => {
         clearInterval(reconnectSocket)
       }
     }
-  },[isError])
+  }, [isError])
 
   useEffect(() => {
-    socket.on('subscribe_grid', (res) => {
-      socket.emit('send_timestamp', Date.now())
-      setData(res)
-      setIsError(false)
-    },[])
+    socket.on(
+      'subscribe_grid',
+      (res) => {
+        socket.emit('send_timestamp', Date.now())
+        setData(res)
+        setIsError(false)
+      },
+      []
+    )
 
     socket.on('connect_error', (err) => {
       setIsError(true)
@@ -54,7 +58,6 @@ export const useSocket = (socket) => {
     socket.on('get_timestamp', (sentTime) => {
       setLatency(Date.now() - sentTime)
     })
-
   }, [socket])
 
   return [data, isLoading, isError, isUnstable]

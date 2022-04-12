@@ -7,7 +7,7 @@ import './App.css'
 function App() {
   return (
     <div className="App">
-      <div className='app__header'>
+      <div className="app__header">
         <div>
           <h5>Flow</h5>
           <h6>by Do Park</h6>
@@ -15,10 +15,9 @@ function App() {
       </div>
       <div></div>
       <Routes>
-        <Route exact path='/' element={<Main />} />
-        <Route exact path='/config' element={<Config/>}/>
+        <Route exact path="/" element={<Main />} />
+        <Route exact path="/config" element={<Config />} />
       </Routes>
-
     </div>
   )
 }

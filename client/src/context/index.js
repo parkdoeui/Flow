@@ -7,9 +7,7 @@ const URL = process.env.REACT_APP_SERVER_HOST || 'http://localhost:3001'
 const SocketProvider = ({ children }) => {
   const socket = io.connect(URL)
   return (
-    <SocketContext.Provider value={socket}>
-      {children}
-    </SocketContext.Provider>
+    <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>
   )
 }
 

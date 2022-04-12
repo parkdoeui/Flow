@@ -20,28 +20,28 @@ const useController = ({ acc, rot, decay }) => {
   })
 
   const onFriction = () => {
-    setPos(prev => {
+    setPos((prev) => {
       const rad = THREE.MathUtils.degToRad(prev.deg)
       return {
         ...prev,
-        x: prev.x += Math.sin(rad) * prev.acc,
-        y: prev.y -= Math.cos(rad) * prev.acc,
-        acc: Math.max(-10, prev.acc *= decay),
+        x: (prev.x += Math.sin(rad) * prev.acc),
+        y: (prev.y -= Math.cos(rad) * prev.acc),
+        acc: Math.max(-10, (prev.acc *= decay)),
       }
     })
   }
 
   const onAcceleration = (num) => {
-    setPos(prev => {
+    setPos((prev) => {
       return {
         ...prev,
-        acc: THREE.MathUtils.clamp(prev.acc += 0.05 * num, -0.5, 2),
+        acc: THREE.MathUtils.clamp((prev.acc += 0.05 * num), -0.5, 2),
       }
     })
   }
 
   const onRotation = (num) => {
-    setPos(prev => ({ ...prev, deg: prev.deg += num }))
+    setPos((prev) => ({ ...prev, deg: (prev.deg += num) }))
   }
 
   const handleKeyInput = (e) => {
@@ -59,19 +59,20 @@ const useController = ({ acc, rot, decay }) => {
     }
   }
   useEffect(() => {
-    const keyDown = document.addEventListener('keydown', (e) => handleKeyInput(e,'keydown'))
+    const keyDown = document.addEventListener('keydown', (e) =>
+      handleKeyInput(e, 'keydown')
+    )
     return () => {
-      if(keyDown)
-        document.clearEventListener('keydown', handleKeyInput)
+      if (keyDown) document.clearEventListener('keydown', handleKeyInput)
     }
   }, [])
 
-  return [ onFriction, pos ]
+  return [onFriction, pos]
 }
 
-const Drone = ({ onChange = () => { }, position, ...props }) => {
+const Drone = ({ onChange = () => {}, position, ...props }) => {
   const group = useRef()
-  const [ animate, pos ] = useController({ acc: 1, rot: 20, decay: 0.98 })
+  const [animate, pos] = useController({ acc: 1, rot: 20, decay: 0.98 })
   const { nodes, materials } = useGLTF(droneGLB)
   const propellerRef = useRef(new Array(4))
 
@@ -85,10 +86,16 @@ const Drone = ({ onChange = () => { }, position, ...props }) => {
 
   useEffect(() => {
     onChange(pos)
-  },[pos])
+  }, [pos])
 
   return (
-    <group ref={group} {...props} rotation={[0, THREE.MathUtils.degToRad(pos.deg), 0]} position={[pos.x, 1, -pos.y]} dispose={null}>
+    <group
+      ref={group}
+      {...props}
+      rotation={[0, THREE.MathUtils.degToRad(pos.deg), 0]}
+      position={[pos.x, 1, -pos.y]}
+      dispose={null}
+    >
       <group position={position} rotation={[-Math.PI / 2, 0, 0]}>
         <group position={[1.38, 1.98, 0.61]} scale={0.42}>
           <mesh
@@ -157,7 +164,7 @@ const Drone = ({ onChange = () => { }, position, ...props }) => {
           />
         </group>
         <group
-          ref={el=>propellerRef.current[0] = el}
+          ref={(el) => (propellerRef.current[0] = el)}
           //propeller
           position={[3.06, 2.73, 1]}
           rotation={[0, 0, 0.05]}
@@ -172,7 +179,7 @@ const Drone = ({ onChange = () => { }, position, ...props }) => {
         </group>
         <group
           //propeller
-          ref={el=>propellerRef.current[1] = el}
+          ref={(el) => (propellerRef.current[1] = el)}
           position={[-3.03, 2.75, 1]}
           rotation={[0, 0, -1.44]}
           scale={[0.15, 0.15, 0.15]}
@@ -186,7 +193,7 @@ const Drone = ({ onChange = () => { }, position, ...props }) => {
         </group>
         <group
           //propeller
-          ref={el=>propellerRef.current[2] = el}
+          ref={(el) => (propellerRef.current[2] = el)}
           position={[-3.03, -2.19, 1]}
           rotation={[0, 0, -0.39]}
           scale={[0.15, 0.15, 0.15]}
@@ -200,7 +207,7 @@ const Drone = ({ onChange = () => { }, position, ...props }) => {
         </group>
         <group
           //propeller
-          ref={el=>propellerRef.current[3] = el}
+          ref={(el) => (propellerRef.current[3] = el)}
           position={[3.05, -2.19, 1]}
           rotation={[0, 0, -1.36]}
           scale={[0.15, 0.15, 0.15]}
